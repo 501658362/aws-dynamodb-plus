@@ -44,4 +44,23 @@
             </plugin>
         </plugins>
     </build>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:https://github.com/501658362/aws-dynamodb-plus.git</connection>
+        <developerConnection>scm:git:https://github.com/501658362/aws-dynamodb-plus.git</developerConnection>
+        <url>git:https://github.com/501658362/aws-dynamodb-plus.git</url>
+    </scm>
+    <developers>
+        <developer>
+            <name>chenyanjin</name>
+            <email>peng501658@gmail.com</email>
+            <organization>chenyanjin.top</organization>
+        </developer>
+    </developers>
 </project>
