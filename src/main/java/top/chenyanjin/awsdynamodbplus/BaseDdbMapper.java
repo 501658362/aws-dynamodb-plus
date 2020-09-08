@@ -2,7 +2,7 @@
  * Copyright(c) 2020 chenyanjin.top, All Rights Reserved.
  */
 
-package com.chenyanjin.awsdynamodbplus;
+package top.chenyanjin.awsdynamodbplus;
 
 import java.util.List;
 

@@ -1,12 +1,12 @@
 /*
- * Copyright(c) chenyanjin.top, All Rights Reserved.
+ * Copyright(c) 2020 chenyanjin.top, All Rights Reserved.
  */
 
-package com.chenyanjin.awsdynamodbplus.impl;
+package top.chenyanjin.awsdynamodbplus.impl;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
-import com.chenyanjin.awsdynamodbplus.BaseDdbMapper;
+import top.chenyanjin.awsdynamodbplus.BaseDdbMapper;
 
 /**
  * Created by IntelliJ IDEA.
