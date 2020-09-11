@@ -28,9 +28,4 @@ public abstract class AbstractHDdbMapperImpl<T, H> extends AbstractDdbMapperImpl
         return (T) this.getMapper().load(this.getTClass(), h);
     }
 
-
-    private Class getTClass() {
-        final Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        return clazz;
-    }
 }

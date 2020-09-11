@@ -26,12 +26,7 @@ public abstract class AbstractHSDdbMapperImpl<T, H, S> extends AbstractDdbMapper
      */
     @Override
     public T getById(final H h, final S s) {
-        return (T) this.getMapper().load(this.getTClass(), h, s);
+        return (T) this.getMapper().load(super.getTClass(), h, s);
     }
 
-
-    private Class getTClass() {
-        final Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        return clazz;
-    }
 }
