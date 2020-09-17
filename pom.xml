@@ -5,9 +5,9 @@
 
     <groupId>top.chenyanjin</groupId>
     <artifactId>aws-dynamodb-plus</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>aws-dynamodb-plus</name>
-    <description>针对 aws dynamodb 高级接口的增强</description>
+    <description>针对 aws dynamodb 高级接口的增强，项目地址：https://github.com/501658362/aws-dynamodb-plus</description>
 
 
     <parent>
