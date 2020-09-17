@@ -82,7 +82,7 @@ class ApplicationTests {
         // 选择性保存
         userMapRepository.saveSelective(userMapPojo);
         // 批量保存
-        userMapRepository.batchSave(Lists.newArrayList(userMapPojo));
+        userMapRepository.save(Lists.newArrayList(userMapPojo));
     }
     @Test
     void getById() {
