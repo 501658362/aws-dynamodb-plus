@@ -1,9 +1,9 @@
 # aws-dynamodb-plus
 >针对 aws DynamoDB 高级接口的增强，高级接口使用方法可以看<a href="https://docs.amazonaws.cn/amazondynamodb/latest/developerguide/HigherLevelInterfaces.html" target="_blank">官方文档</a>
 ## 提供的功能
-> 1. 保存
-> 2. 选择性保存
-> 3. 批量保存
+> 1. 保存、选择性保存、批量保存
+> 2. 删除、批量删除
+> 3. count
 > 4. 根据主键查询
 > 5. query接口
 > 6. 后续会提供更多，如果有好的建议可以联系我们
