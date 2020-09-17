@@ -4,6 +4,7 @@
 
 package top.chenyanjin.awsdynamodbplus;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 import java.util.List;
@@ -33,7 +34,20 @@ public interface BaseDdbMapper<T> {
      * 批量保存
      * @param list list
      */
-    void batchSave(List<T> list);
+    void batch(List<T> list);
+
+    /**
+     * 删除
+     * @param t 参数
+     */
+    void delete(T t);
+
+    /**
+     * 批量删除
+     * @param list 参数
+     * @return 删除失败
+     */
+    List<DynamoDBMapper.FailedBatch> delete(List<T> list);
 
 
     /**
@@ -62,4 +76,24 @@ public interface BaseDdbMapper<T> {
      * @return list
      */
     List<T> query(String keyCondition, Map<String, AttributeValue> attributeValueMap, String filterExpression, boolean asc);
+
+    /**
+     * count
+     *
+     * @param keyCondition keyCondition
+     * @param attributeValueMap attributeValueMap
+     * @return count
+     */
+    int countByQuery(String keyCondition, Map<String, AttributeValue> attributeValueMap);
+
+    /**
+     * count
+     *
+     * @param keyCondition keyCondition
+     * @param attributeValueMap attributeValueMap
+     * @param filterExpression filterExpression
+     * @return count
+     */
+    int countByQuery(String keyCondition, Map<String, AttributeValue> attributeValueMap, String filterExpression);
+
 }

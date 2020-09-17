@@ -56,8 +56,29 @@ public abstract class AbstractDdbMapperImpl<T> implements BaseDdbMapper<T> {
      * @param list list
      */
     @Override
-    public void batchSave(List<T> list) {
+    public void batch(List<T> list) {
         this.getMapper().batchSave(list);
+    }
+
+    /**
+     * 删除
+     *
+     * @param t 参数
+     */
+    @Override
+    public void delete(T t) {
+        this.getMapper().delete(t);
+    }
+
+    /**
+     * 批量删除
+     *
+     * @param list 参数
+     * @return 删除失败
+     */
+    @Override
+    public List<DynamoDBMapper.FailedBatch> delete(List<T> list) {
+        return this.getMapper().batchDelete(list);
     }
 
     /**
@@ -96,18 +117,54 @@ public abstract class AbstractDdbMapperImpl<T> implements BaseDdbMapper<T> {
      */
     @Override
     public List<T> query(final String keyCondition, final Map<String, AttributeValue> attributeValueMap, final String filterExpression, final boolean asc) {
+        return this.getMapper().query(this.getTClass(), this.getQuery(keyCondition, attributeValueMap, filterExpression, asc));
+    }
+
+    /**
+     * count
+     *
+     * @param keyCondition keyCondition
+     * @param attributeValueMap attributeValueMap
+     * @return count
+     */
+    @Override
+    public int countByQuery(String keyCondition, Map<String, AttributeValue> attributeValueMap) {
+        return this.getMapper().count(this.getTClass(), this.getQuery(keyCondition, attributeValueMap));
+    }
+
+    /**
+     * count
+     *
+     * @param keyCondition keyCondition
+     * @param attributeValueMap attributeValueMap
+     * @param filterExpression filterExpression
+     * @return count
+     */
+    @Override
+    public int countByQuery(String keyCondition, Map<String, AttributeValue> attributeValueMap, String filterExpression) {
+        return this.getMapper().count(this.getTClass(), this.getQuery(keyCondition, attributeValueMap, filterExpression));
+    }
+
+    private DynamoDBQueryExpression<T> getQuery(String keyCondition, Map<String, AttributeValue> attributeValueMap) {
+        return this.getQuery(keyCondition, attributeValueMap, null);
+    }
+
+    private DynamoDBQueryExpression<T> getQuery(String keyCondition, Map<String, AttributeValue> attributeValueMap, String filterExpression) {
+        return this.getQuery(keyCondition, attributeValueMap, filterExpression, true);
+    }
+
+    private DynamoDBQueryExpression<T> getQuery(String keyCondition, Map<String, AttributeValue> attributeValueMap, String filterExpression, final boolean asc) {
         final DynamoDBQueryExpression<T> query = new DynamoDBQueryExpression<T>();
         query.withKeyConditionExpression(keyCondition)
-                .withExpressionAttributeValues(attributeValueMap)
-                .withScanIndexForward(false);
-        if(filterExpression != null && !filterExpression.isEmpty()){
+                .withExpressionAttributeValues(attributeValueMap);
+        if (filterExpression != null && !filterExpression.isEmpty()) {
             query.withFilterExpression(filterExpression);
         }
-        return this.getMapper().query(this.getTClass(), query);
+        query.withScanIndexForward(asc);
+        return query;
     }
 
     protected Class<T> getTClass() {
-        final Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        return clazz;
+        return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 }
