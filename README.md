@@ -13,7 +13,7 @@
 <dependency>
     <groupId>top.chenyanjin</groupId>
     <artifactId>aws-dynamodb-plus</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 >2 . 在对应 mapper or repository 接口继承接口，这里提供了两个接口，一个是只有 hashKey，一个是有 hashKey 和 sortKey，根据自己的表选择继承对应的接口。
